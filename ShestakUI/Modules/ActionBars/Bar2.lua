@@ -13,7 +13,7 @@ for i = 1, 12 do
 	local b2 = _G["MultiBarBottomLeftButton"..i-1]
 	b:ClearAllPoints()
 	if i == 1 then
-		b:SetPoint("BOTTOM", ActionButton1, "TOP", 0, C.actionbar.button_space)
+		b:SetPoint("TOP", ActionButton1, "BOTTOM", 0, -C.actionbar.button_space)
 	else
 		b:SetPoint("LEFT", b2, "RIGHT", C.actionbar.button_space, 0)
 	end

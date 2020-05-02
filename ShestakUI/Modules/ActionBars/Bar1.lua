@@ -13,7 +13,7 @@ for i = 1, 12 do
 	button:ClearAllPoints()
 	button:SetParent(Bar1Holder)
 	if i == 1 then
-		button:SetPoint("BOTTOMLEFT", Bar1Holder, 0, 0)
+		button:SetPoint("TOPLEFT", Bar1Holder, 0, 0)
 	else
 		local previous = _G["ActionButton"..i-1]
 		button:SetPoint("LEFT", previous, "RIGHT", C.actionbar.button_space, 0)
