@@ -89,9 +89,9 @@ local function OnMouseUp(element, btn)
 end
 
 local function CheckAlpha(element)
-	if SavedOptions and SavedOptions.Experience == true then
+	if SavedOptions and not SavedOptions.Experience then
 		element.outAlpha = 1
-		element:SetAlpha(element.outAlpha or 1)
+		element:SetAlpha(element.outAlpha or 0)
 	end
 end
 

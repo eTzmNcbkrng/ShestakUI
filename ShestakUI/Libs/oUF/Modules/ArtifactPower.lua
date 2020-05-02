@@ -211,9 +211,9 @@ local function OnMouseUp(element, btn)
 end
 
 local function CheckAlpha(element)
-	if SavedOptions and SavedOptions.ArtifactPower == true then
+	if SavedOptions and not SavedOptions.ArtifactPower then
 		element.offAlpha = 1
-		element:SetAlpha(element.offAlpha or 1)
+		element:SetAlpha(element.offAlpha or 0)
 	end
 end
 
