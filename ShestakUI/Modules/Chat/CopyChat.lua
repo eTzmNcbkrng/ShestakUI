@@ -113,7 +113,7 @@ for i = 1, NUM_CHAT_WINDOWS do
 	local button = CreateFrame("Button", format("ButtonCF%d", i), cf)
 	button:SetPoint("BOTTOMRIGHT", 0, 1)
 	button:SetSize(20, 20)
-	button:SetAlpha(0)
+	button:SetAlpha(.1)
 	button:SetTemplate("Transparent")
 	button:SetBackdropBorderColor(T.color.r, T.color.g, T.color.b)
 
