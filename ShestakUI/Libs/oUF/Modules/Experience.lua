@@ -37,7 +37,7 @@ local function ShouldShowHonor()
 end
 
 local function GetValues()
-	local isHonor = ShouldShowHonor()
+	local isHonor = IsPlayerMaxLevel() --ShouldShowHonor()
 	local cur = (isHonor and UnitHonor or UnitXP)('player')
 	local max = (isHonor and UnitHonorMax or UnitXPMax)('player')
 	local level = (isHonor and UnitHonorLevel or UnitLevel)('player')
@@ -89,9 +89,12 @@ local function OnMouseUp(element, btn)
 end
 
 local function CheckAlpha(element)
-	if SavedOptions and not SavedOptions.Experience then
-		element.outAlpha = 1
+	if SavedOptions and SavedOptions.Experience == false then
+		element.outAlpha = 0
 		element:SetAlpha(element.outAlpha or 0)
+	else
+		element.outAlpha = 1
+		element:SetAlpha(element.outAlpha or 1)
 	end
 end
 
