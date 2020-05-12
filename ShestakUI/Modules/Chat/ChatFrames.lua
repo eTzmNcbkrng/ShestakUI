@@ -312,10 +312,10 @@ end
 hooksecurefunc("FCF_OpenTemporaryWindow", SetupTempChat)
 
 -- Disable pet battle tab
-local old = FCFManager_GetNumDedicatedFrames
-function FCFManager_GetNumDedicatedFrames(...)
-	return select(1, ...) ~= "PET_BATTLE_COMBAT_LOG" and old(...) or 1
-end
+-- local old = FCFManager_GetNumDedicatedFrames
+-- function FCFManager_GetNumDedicatedFrames(...)
+--	return select(1, ...) ~= "PET_BATTLE_COMBAT_LOG" and old(...) or 1
+-- end
 
 -- Remove player's realm name
 local function RemoveRealmName(_, _, msg, author, ...)
