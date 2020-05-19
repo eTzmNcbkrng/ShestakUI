@@ -784,19 +784,6 @@ local function Shared(self, unit)
 				self.CPoints[6]:SetStatusBarColor(0.1, 0.9, 0.1)
 			end
 
-			-- Priest Range bar
-			if C.unitframe_class_bar.range == true and T.class == "PRIEST" then
-				self.RangeBar = CreateFrame("StatusBar", self:GetName().."_RangeBar", self)
-				self.RangeBar:CreateBackdrop("Default")
-				self.RangeBar:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 7)
-				self.RangeBar:SetSize(217, 7)
-				self.RangeBar:SetStatusBarTexture(C.media.texture)
-
-				self.RangeBar.bg = self.RangeBar:CreateTexture(nil, "BORDER")
-				self.RangeBar.bg:SetAllPoints()
-				self.RangeBar.bg:SetTexture(C.media.texture)
-			end
-
 			-- Enemy specialization
 			if C.unitframe.plugins_enemy_spec == true then
 				self.EnemySpec = T.SetFontString(self.Power, C.font.unit_frames_font, C.font.unit_frames_font_size, C.font.unit_frames_font_style)
@@ -827,10 +814,7 @@ local function Shared(self, unit)
 			self.Status:Hide()
 			self.Status.Override = T.dummy
 
-			self.Status.Update = CreateFrame("Frame", nil, self)
-			self.Status.Update:SetScript("OnUpdate", function(self, elapsed) T.UpdatePvPStatus(self:GetParent(), elapsed) end)
-
-			self:SetScript("OnEnter", function(self) FlashInfo.ManaLevel:Hide() self.Status:Show() UnitFrame_OnEnter(self) end)
+			self:SetScript("OnEnter", function(self) FlashInfo.ManaLevel:Hide() T.UpdatePvPStatus(self) self.Status:Show() UnitFrame_OnEnter(self) end)
 			self:SetScript("OnLeave", function(self) FlashInfo.ManaLevel:Show() self.Status:Hide() UnitFrame_OnLeave(self) end)
 		end
 	end
@@ -1469,21 +1453,41 @@ end
 ----------------------------------------------------------------------------------------
 --	Auto reposition heal raid frame
 ----------------------------------------------------------------------------------------
-local function Reposition()
-	if SavedOptions and SavedOptions.RaidLayout == "HEAL" and not C.raidframe.raid_groups_vertical then
-		if C.raidframe.raid_groups < 6 then return end
-
-		if C.unitframe.castbar_icon == true then
-			oUF_Player_Castbar:SetPoint(C.position.unitframes.player_castbar[1], C.position.unitframes.player_castbar[2], C.position.unitframes.player_castbar[3], C.position.unitframes.player_castbar[4] + 11, C.position.unitframes.player_castbar[5] + (C.raidframe.raid_groups - 5) * 33)
+local prevNum = C.raidframe.raid_groups
+local function Reposition(self)
+	if SavedOptions and SavedOptions.RaidLayout == "HEAL" and not C.raidframe.raid_groups_vertical and C.raidframe.raid_groups > 5 then
+		if InCombatLockdown() then return end
+		local num = GetNumGroupMembers()
+		local maxGroup = 5
+		if num > 35 then
+			maxGroup = 8
+		elseif num > 30 then
+			maxGroup = 7
+		elseif num > 25 then
+			maxGroup = 6
 		else
-			oUF_Player_Castbar:SetPoint(C.position.unitframes.player_castbar[1], C.position.unitframes.player_castbar[2], C.position.unitframes.player_castbar[3], C.position.unitframes.player_castbar[4], C.position.unitframes.player_castbar[5] + (C.raidframe.raid_groups - 5) * 33)
+			maxGroup = 5
 		end
+		if maxGroup >= C.raidframe.raid_groups then
+			maxGroup = C.raidframe.raid_groups
+		end
+		if prevNum ~= maxGroup then
+			if C.unitframe.castbar_icon == true then
+				oUF_Player_Castbar:SetPoint(C.position.unitframes.player_castbar[1], C.position.unitframes.player_castbar[2], C.position.unitframes.player_castbar[3], C.position.unitframes.player_castbar[4] + 11, C.position.unitframes.player_castbar[5] + (maxGroup - 5) * 33)
+			else
+				oUF_Player_Castbar:SetPoint(C.position.unitframes.player_castbar[1], C.position.unitframes.player_castbar[2], C.position.unitframes.player_castbar[3], C.position.unitframes.player_castbar[4], C.position.unitframes.player_castbar[5] + (maxGroup - 5) * 33)
+			end
 
-		player:SetPoint(C.position.unitframes.player[1], C.position.unitframes.player[2], C.position.unitframes.player[3], C.position.unitframes.player[4], C.position.unitframes.player[5] + (C.raidframe.raid_groups - 5) * 33)
-		target:SetPoint(C.position.unitframes.target[1], C.position.unitframes.target[2], C.position.unitframes.target[3], C.position.unitframes.target[4], C.position.unitframes.target[5] + (C.raidframe.raid_groups - 5) * 33)
+			player:SetPoint(C.position.unitframes.player[1], C.position.unitframes.player[2], C.position.unitframes.player[3], C.position.unitframes.player[4], C.position.unitframes.player[5] + (maxGroup - 5) * 33)
+			target:SetPoint(C.position.unitframes.target[1], C.position.unitframes.target[2], C.position.unitframes.target[3], C.position.unitframes.target[4], C.position.unitframes.target[5] + (maxGroup - 5) * 33)
+			prevNum = maxGroup
+		end
+	else
+		self:UnregisterEvent("GROUP_ROSTER_UPDATE")
 	end
 end
 
 local frame = CreateFrame("Frame")
 frame:RegisterEvent("PLAYER_LOGIN")
+frame:RegisterEvent("GROUP_ROSTER_UPDATE")
 frame:SetScript("OnEvent", Reposition)
