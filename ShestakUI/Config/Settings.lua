@@ -50,6 +50,7 @@ C["skins"] = {
 	["cool_line"] = true,						-- CoolLine skin
 	["dbm"] = true,								-- DBM skin
 	["dbm_movable"] = true,						-- Allow to move DBM bars
+	["details"] = true,							-- Details skin
 	["dominos"] = true,							-- Dominos skin
 	["flyout_button"] = true,					-- FlyoutButtonCustom skin
 	["ls_toasts"] = true,						-- Is: Toasts skin
