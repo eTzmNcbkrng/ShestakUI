@@ -121,6 +121,7 @@ C["unitframe"] = {
 	["plugins_power_prediction"] = true,		-- Power cost prediction bar on player frame
 	["plugins_absorbs"] = true,				-- Absorbs value on player frame
 	-- Size
+	["player_width"] = 217,						-- Player and Target width
 	["extra_height_auto"] = true,				-- Auto height for health/power depending on font size
 	["extra_health_height"] = 0,				-- Additional height for health
 	["extra_power_height"] = 0,					-- Additional height for power
