@@ -359,7 +359,7 @@ skin.panels = {
 		self.Prompt:SetTemplate("Transparent")
 		T.SkinEditBox(self.EditBox)
 		self.EditBox:SetBackdrop({})
-		self.TabPicker:SkinButton()
+		self.TabPicker:CreateBackdrop("Overlay")
 		self.TabPicker.Icon:SetDrawLayer("ARTWORK")
 		self.TeamTabIconPicker:StripTextures()
 		self.TeamTabIconPicker:SetTemplate("Transparent")
