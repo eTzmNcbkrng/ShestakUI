@@ -21,7 +21,7 @@ local T, C, L, _ = unpack(select(2, ...))
 C["font"] = {
 	-- Stats font
 	["stats_font"] = C.media.pixel_font,
-	["stats_font_size"] = 8,
+	["stats_font_size"] = 16,
 	["stats_font_style"] = "OUTLINEMONOCHROME",
 	["stats_font_shadow"] = false,
 
