@@ -41,6 +41,7 @@ C["skins"] = {
 	["blizzard_frames"] = true,					-- Blizzard frames skin
 	["minimap_buttons"] = true,					-- Skin addons icons on minimap
 	["minimap_buttons_mouseover"] = true,		-- Addons icons on mouseover
+	-- Addons
 	["ace3"] = true,							-- Ace3 options elements skin
 	["atlasloot"] = true,						-- AtlasLoot skin
 	["bigwigs"] = true,							-- BigWigs skin
@@ -194,6 +195,27 @@ C["raidframe"] = {
 }
 
 ----------------------------------------------------------------------------------------
+--	Auras/Buffs/Debuffs options
+----------------------------------------------------------------------------------------
+C["aura"] = {
+	["player_buff_size"] = 25,					-- Player buffs size
+	["player_debuff_size"] = 25,				-- Debuffs size
+	["show_spiral"] = true,						-- Spiral on aura icons
+	["show_timer"] = true,						-- Show cooldown timer on aura icons
+	["player_auras"] = true,					-- Auras on player frame
+	["target_auras"] = true,					-- Auras on target frame
+	["focus_debuffs"] = true,					-- DeBuffs on focus frame
+	["fot_debuffs"] = false,					-- DeBuffs on focustarget frame
+	["pet_debuffs"] = false,					-- DeBuffs on pet frame
+	["tot_debuffs"] = false,					-- DeBuffs on targettarget frame
+	["boss_buffs"] = true,						-- Buffs on boss frame
+	["player_aura_only"] = false,				-- Only your debuff on target frame
+	["debuff_color_type"] = true,				-- Color debuff by type
+	["cast_by"] = false,						-- Show who cast a buff/debuff in its tooltip
+	["classcolor_border"] = false,				-- Enable classcolor border for player buffs
+}
+
+----------------------------------------------------------------------------------------
 --	ActionBar options
 ----------------------------------------------------------------------------------------
 C["actionbar"] = {
@@ -259,12 +281,12 @@ C["tooltip"] = {
 ----------------------------------------------------------------------------------------
 C["chat"] = {
 	["enable"] = true,							-- Enable chat
+	["width"] = 350,							-- Chat width
+	["height"] = 112,							-- Chat height
 	["background"] = false,						-- Enable background for chat
 	["background_alpha"] = 0.7,					-- Background alpha
 	["filter"] = true,							-- Removing some systems spam ("Player1" won duel "Player2")
 	["spam"] = true,							-- Removing some players spam (gold/portals/etc)
-	["width"] = 450,							-- Chat width
-	["height"] = 303,							-- Chat height
 	["chat_bar"] = false,						-- Lite Button Bar for switch chat channel
 	["chat_bar_mouseover"] = false,				-- Lite Button Bar on mouseover
 	["whisp_sound"] = true,						-- Sound when whisper
@@ -341,27 +363,6 @@ C["combattext"] = {
 }
 
 ----------------------------------------------------------------------------------------
---	Auras/Buffs/Debuffs options
-----------------------------------------------------------------------------------------
-C["aura"] = {
-	["player_buff_size"] = 25,					-- Player buffs size
-	["player_debuff_size"] = 25,				-- Debuffs size
-	["show_spiral"] = true,						-- Spiral on aura icons
-	["show_timer"] = true,						-- Show cooldown timer on aura icons
-	["player_auras"] = true,					-- Auras on player frame
-	["target_auras"] = true,					-- Auras on target frame
-	["focus_debuffs"] = true,					-- DeBuffs on focus frame
-	["fot_debuffs"] = false,					-- DeBuffs on focustarget frame
-	["pet_debuffs"] = false,					-- DeBuffs on pet frame
-	["tot_debuffs"] = false,					-- DeBuffs on targettarget frame
-	["boss_buffs"] = true,						-- Buffs on boss frame
-	["player_aura_only"] = false,				-- Only your debuff on target frame
-	["debuff_color_type"] = true,				-- Color debuff by type
-	["cast_by"] = false,						-- Show who cast a buff/debuff in its tooltip
-	["classcolor_border"] = false,				-- Enable classcolor border for player buffs
-}
-
-----------------------------------------------------------------------------------------
 --	Bag options
 ----------------------------------------------------------------------------------------
 C["bag"] = {
@@ -423,10 +424,10 @@ C["filger"] = {
 C["announcements"] = {
 	["drinking"] = false,						-- Announce when arena enemy is drinking
 	["interrupts"] = true,						-- Announce when you interrupt
-	["spells"] = true,							-- Announce when you cast some spell (from the list)
-	["spells_from_all"] = true,					-- Check spells cast from all members
+	["spells"] = false,							-- Announce when you cast some spell (from the list)
+	["spells_from_all"] = false,					-- Check spells cast from all members
 	["toys"] = true,							-- Announce some annoying toys
-	["says_thanks"] = false,					-- Says thanks for some spells (resurrection, from the list)
+	["says_thanks"] = true,					-- Says thanks for some spells (resurrection, from the list)
 	["pull_countdown"] = true,					-- Pull countdown announce (/pc #)
 	["flask_food"] = true,						-- Announce the usage of flasks and food (/ffcheck)
 	["flask_food_raid"] = true,					-- Announce to raid channel
